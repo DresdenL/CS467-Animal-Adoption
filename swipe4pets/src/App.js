@@ -5,6 +5,7 @@ import { BrowserRouter as Router,Routes, Route } from 'react-router-dom';
 import ShelterHome from './pages/shelter/ShelterHome';
 import AdopterHome from './pages/adopter/AdopterHome';
 import Home from './pages/Home';
+import CreateProfile from './pages/shelter/CreateProfile';
 
 export default function App() {
     const [apiResponse, setApiResponse] = useState({});
@@ -12,7 +13,7 @@ export default function App() {
     useEffect(() => {
         const getApiResponse = async () => {
             const response = await fetch("/api");
-            const responseJson = await response.json()
+            const responseJson = await response.text()
             setApiResponse(responseJson)
         }
         getApiResponse();
@@ -20,13 +21,16 @@ export default function App() {
 
     return (
         <>
-            <BackendTest
-                apiResponse={apiResponse}
-            />
+            <div>
+                <BackendTest
+                    apiResponse={apiResponse}
+                />
+            </div>
             <Router>
                 <Routes>
                     <Route exact path="Home" element={<Home />} />
                     <Route exact path="ShelterHome" element={<ShelterHome />} />
+                    <Route exact path="CreateProfile" element={<CreateProfile />} />
                     <Route exact path="AdopterHome" element={<AdopterHome />} />
                 </Routes>
             </Router>
