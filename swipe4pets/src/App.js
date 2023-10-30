@@ -1,4 +1,4 @@
-import BackendTest from './Components/Deploy/BackendTest';
+import BackendTest from "./Components/Deploy/BackendTest";
 import ReactDOM from "react-dom/client";
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router,Routes, Route } from 'react-router-dom';
@@ -10,25 +10,24 @@ import Login from './pages/Login';
 import SignupPt1 from './pages/signup/SignupPt1';
 import ShelterSignup from './pages/signup/ShelterSignup';
 import AdopterSignUp from './pages/signup/AdopterSignup';
+import SwipeProfiles from "./pages/adopter/SwipeProfiles.jsx";
 
 export default function App() {
-    const [apiResponse, setApiResponse] = useState({});
+  const [apiResponse, setApiResponse] = useState({});
 
-    useEffect(() => {
-        const getApiResponse = async () => {
-            const response = await fetch("/api");
-            const responseJson = await response.text()
-            setApiResponse(responseJson)
-        }
-        getApiResponse();
-    }, [])
+  useEffect(() => {
+    const getApiResponse = async () => {
+      const response = await fetch("/api");
+      const responseJson = await response.text();
+      setApiResponse(responseJson);
+    };
+    getApiResponse();
+  }, []);
 
     return (
         <>
             <div>
-                <BackendTest
-                    apiResponse={apiResponse}
-                />
+                <BackendTest apiResponse={apiResponse} />
             </div>
             <Router>
                 <Routes>
@@ -36,6 +35,7 @@ export default function App() {
                     <Route exact path="ShelterHome" element={<ShelterHome />} />
                     <Route exact path="CreateProfile" element={<CreateProfile />} />
                     <Route exact path="AdopterHome" element={<AdopterHome />} />
+                    <Route exact path='SwipeProfiles' element={<SwipeProfiles />} />
                     <Route exact path = "Login" element = {<Login />} />
                     <Route exact path = "Signup" element = {<SignupPt1 />} />
                     <Route exact path= "sheltersignup" element = {<ShelterSignup />} />
@@ -43,7 +43,8 @@ export default function App() {
                 </Routes>
             </Router>
         </>
-    )
+    );
+
 }
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
