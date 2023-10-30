@@ -1,7 +1,29 @@
 import React from 'react';
+import {useNavigate} from 'react-router-dom';
 
 const Home = () => {
-  return <h1>This is the landing page, where a user is prompted to login or create an account.</h1>;
+  const navigate = useNavigate();
+
+  return (
+
+    <>
+    <head>
+      <h1>Swipe4Pets Home Page</h1>
+    </head>
+    <body>
+      <center>
+      <h1>Welcome to Swipe4Pets! <br></br> Lets find your pawfect match.</h1>
+      
+      <br></br>
+      <button onClick={() => { navigate('/login'); } }> Login</button> 
+      <br></br> <br></br>
+      <button onClick={() => { navigate('/signup'); } }> Sign Up</button>
+    </center>
+    </body>
+    </>
+
+
+  );
 };
 
 export default Home;
