@@ -7,7 +7,7 @@ import NewSearch from '../../Components/Adopter/NewSearch.jsx';
 import Matches from '../../Components/Adopter/Matches.jsx';
 
 
-function AdopterHomepage() {
+function AdopterHome() {
   return (
     <Container>
       <h1 class="text-center">Adopter HomePage</h1>
@@ -25,4 +25,4 @@ function AdopterHomepage() {
   );
 }
 
-export default AdopterHomepage;
+export default AdopterHome;

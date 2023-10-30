@@ -3,9 +3,7 @@ import TinderCard from 'react-tinder-card'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import profile_pic from './../Components/Adopter/temp/dog.png';
-
-
+import profile_pic from './../../Components/Adopter/temp/dog.png';
 
 const db = [
   {
@@ -125,7 +123,6 @@ function SwipeProfiles () {
 }
 
 export default SwipeProfiles;
-
 
 
     // <Container>
