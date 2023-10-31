@@ -1,49 +1,37 @@
 import React from 'react';
-import {useNavigate} from 'react-router-dom';
 
-const AdopterSignUp = () => {
-  const navigate = useNavigate();
+export default function AdopterSignUp() {
 
   return (
 
-    <>
-    <head>
-          <h1>Adopter Sign Up</h1>
-      </head>
-     <body> <center>
-        <h1>Adopter Sign Up</h1>
-        <form>
-              <div class="adopter-signup">
-              <label>Phone Number</label> <br></br>
-                <input type='text' id='phone-number' name='phone-number' required></input>
-                <br></br> <br></br>
+    <div class="center">
+      <h1>Adopter Sign Up</h1>
+      <form>
+        <div class="adopter-signup">
+          <label>Phone Number</label> <br></br>
+          <input type='text' id='phone-number' name='phone-number' required></input>
+          <br></br> <br></br>
 
-                <label>Street Address</label> <br></br>
-                <input type='text' id='street-address' name='street-address' required></input>
-                <br></br> <br></br>
+          <label>Street Address</label> <br></br>
+          <input type='text' id='street-address' name='street-address' required></input>
+          <br></br> <br></br>
 
-                <label>City</label> <br></br>
-                <input type='text' id='city' name='city' required></input>
-                <br></br> <br></br>
+          <label>City</label> <br></br>
+          <input type='text' id='city' name='city' required></input>
+          <br></br> <br></br>
 
-                <label>State</label> <br></br>
-                <input type='text' id='state' name='state' required></input>
-                <br></br> <br></br>
+          <label>State</label> <br></br>
+          <input type='text' id='state' name='state' required></input>
+          <br></br> <br></br>
 
-                <label>ZIP code</label> <br></br>
-                <input type='text' id='zip-code' name='zip-code' required></input>
-                <br></br> <br></br>
+          <label>ZIP code</label> <br></br>
+          <input type='text' id='zip-code' name='zip-code' required></input>
+          <br></br> <br></br>
 
-                <button type='submit'> Submit</button>
+          <button type='submit'> Submit</button>
 
-              </div>
-          </form>
-          </center>
-          </body> 
-          </>
-
-
+        </div>
+      </form>
+    </div>
   );
 };
-
-export default AdopterSignUp;

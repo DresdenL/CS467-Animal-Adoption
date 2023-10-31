@@ -1,29 +1,17 @@
 import React from 'react';
-import {useNavigate} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const Home = () => {
-  const navigate = useNavigate();
+export default function Home() {
 
   return (
-
-    <>
-    <head>
-      <h1>Swipe4Pets Home Page</h1>
-    </head>
-    <body>
-      <center>
+    <div class="center">
       <h1>Welcome to Swipe4Pets! <br></br> Lets find your pawfect match.</h1>
-      
       <br></br>
-      <button onClick={() => { navigate('/login'); } }> Login</button> 
+      <Link to="/login"><button>Login</button></Link>
       <br></br> <br></br>
-      <button onClick={() => { navigate('/signup'); } }> Sign Up</button>
-    </center>
-    </body>
-    </>
-
-
+      <Link to="/signup"><button>Sign Up</button></Link>
+      <br></br> <br></br>
+      <Link to="/backendtest"><button>Backend Test</button></Link>
+    </div>
   );
 };
-
-export default Home;
