@@ -1,3 +1,11 @@
 .center {
     text-align: center;
 }
+
+.shelter-signup-step {
+    display: none;
+}
+
+.adopter-signup-step {
+    display: none;
+}
