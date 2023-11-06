@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 
 
-const CreateProfile = () => {
+const ManageProfile = () => {
   return (
     <div>
       <form>
@@ -11,15 +11,14 @@ const CreateProfile = () => {
           <div class="form-row">
             <div class="form-group">
               <label for="name">Name</label>
-              <input type="name" class="form-control mb-2" id="name" placeholder="Enter name"></input>
+              <input type="name" class="form-control mb-2" id="name" placeholder="Charlie"></input>
             </div>
           </div>
 
           <div class="form-group" id="formgroup2">
             <label for="availability" class="mb-2">Availability</label>
             <select class="custom-select mb-2" id="availability">
-              <option selected>Select availability</option>
-              <option>Available</option>
+              <option selected>Available</option>
               <option>Adoption Pending</option>
               <option>Adopted</option>
               <option>Not available</option>
@@ -29,21 +28,20 @@ const CreateProfile = () => {
           <form class="form-inline">
             <label class="sr-only" for="species">Species</label>
             <select class="custom-select mb-2" id="species">
-              <option selected>Select species</option>
               <option>Dog</option>
-              <option>Cat</option>
+              <option selected>Cat</option>
               <option>Other</option>
             </select>
           </form>
 
           <div class="form-group">
             <label for="petName">Breed</label>
-            <input type="text" class="form-control mb-2" id="breed" placeholder="Enter breed"></input>
+            <input type="text" class="form-control mb-2" id="breed" placeholder="Grey tabby"></input>
           </div>
 
           <div class="form-group">
             <label for="age">Age</label>
-            <input type="text" class="form-control mb-2" id="age" placeholder="Enter age"></input>
+            <input type="text" class="form-control mb-2" id="age" placeholder="3"></input>
           </div>
 
           <div class="form-group">
@@ -62,20 +60,20 @@ const CreateProfile = () => {
 
           <form>
             <div class="form-group">
-              <label for="petPic">Animal picture</label>
+              <label for="petPic">Change profile picture</label>
               <input type="file" class="form-control-file mb-2" id="petPic"></input>
             </div>
           </form>
 
           <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control mb-2" id="description" rows="3"></textarea>
+            <textarea class="form-control mb-2" id="description" rows="3" value="Charlie is a sweet cat who loves catnip and cuddlees"></textarea>
           </div>
-          <Link to="/shelterHome"><button type="submit">Submit</button></Link>
+          <Link to="/shelterHome"><button type="submit">Submit changes</button></Link>
         </div>
       </form>
     </div>
   );
 };
 
-export default CreateProfile;
+export default ManageProfile;
