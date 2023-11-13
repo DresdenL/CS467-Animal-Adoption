@@ -23,3 +23,4 @@ CREATE_ANIMAL_REQUEST_PARAMS = [
     "dispositions",
     "age",
 ]
+
