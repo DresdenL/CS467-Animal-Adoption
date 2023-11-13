@@ -9,3 +9,15 @@
 .adopter-signup-step {
     display: none;
 }
+
+/* Make circles that indicate the progress of the signup process: */
+.step {
+    height: 40px;
+    width: 40px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+  }
