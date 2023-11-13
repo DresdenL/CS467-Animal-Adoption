@@ -80,6 +80,17 @@ def updateShelterUser():
         "shelterUserAPI": "PUT - updateShelterUser not available at this time"
     }
 
+@app.route('/shelterUser', methods=["DELETE"])
+def deleteShelterUser():
+    """
+    Deletes shelter user and all dependent object
+    """
+    # TO-DO: parse query for any invalid parameters and return appropriate error if applicable
+    # TO-DO: delete shelter account object in database and all dependent objects (including animals)
+    return {
+        "animalAPI": "DELETE - deleteShelterUser not available at this time"
+    }
+
 @app.route('/animal', methods=["POST"])
 def createAnimal():
     """
@@ -132,6 +143,18 @@ def updateAnimal():
     return {
         "animalAPI": "PUT - updateAnimal not available at this time"
     }
+
+@app.route('/animal', methods=["DELETE"])
+def deleteAnimal():
+    """
+    Deletes animal
+    """
+    # TO-DO: parse query for any invalid parameters and return appropriate error if applicable
+    # TO-DO: delete animal object in database and all dependent objects
+    return {
+        "animalAPI": "DELETE - deleteAnimal not available at this time"
+    }
+
 
 
 if __name__ == "__main__":
