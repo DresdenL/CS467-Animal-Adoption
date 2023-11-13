@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProgressBar from '../../Components/progressBar';
+import ProgressBar2 from '../../Components/progressBar2';
 
 // CITATION
 // ACCESSED: November 2023
@@ -34,8 +35,6 @@ export default function AdopterSignUp() {
   // initiate step
   let currentStep = 0;
 
-  let progress_bar = 1;
-
 
   // function to show the current sign up step, pass function an integer and it will show that step
   const showStep = (n) => {
@@ -62,14 +61,13 @@ export default function AdopterSignUp() {
 
     // adjusts current step
     currentStep = currentStep + n;
-    progress_bar = progress_bar + n;
 
     // checks if it needs to submit, display step, or navigate back to first signup page
     if (currentStep >= steps.length) {
       // this is PLACEHOLDER currently. eventually it will submit the form and actually sign up user
       // for now it just thanks them for signing up and reroutes to the original signup page
-      alert("Thank you for signing up!");
-      navigate("/signup");
+      //alert("Thank you for signing up!");
+      navigate("/SignupComplete");
       return false;
     } else if (currentStep < 0) {
       navigate("/signup");
@@ -90,7 +88,7 @@ export default function AdopterSignUp() {
       <h1>Sign Up</h1>
       <form>
       <div class="adopter-signup-step">
-          <ProgressBar step={progress_bar}></ProgressBar>
+          <ProgressBar step={1}></ProgressBar>
           <label>First Name</label> <br></br>
           <input id='firstName' name='firstName' value={firstName} onChange = {e => setFirstName(e.target.value)} type='text' required></input>
           <br></br> <br></br>
@@ -109,7 +107,7 @@ export default function AdopterSignUp() {
         </div>
         
         <div class="adopter-signup-step">
-          <ProgressBar step={progress_bar}></ProgressBar>
+          <ProgressBar2 step={2}></ProgressBar2>
           <label>Phone Number</label> <br></br>
           <input type='tel' id='phone' name='phone' value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)} required></input>
           <br></br> <br></br>

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { useNavigate} from 'react-router-dom';
 import ProgressBar from '../../Components/progressBar';
+import ProgressBar2 from '../../Components/progressBar2';
 
 // CITATION
 // ACCESSED: November 2023
@@ -63,8 +64,8 @@ export default function ShelterSignup() {
     if (currentStep >= steps.length) {
       // this is PLACEHOLDER currently. eventually it will submit the form and actually sign up user
       // for now it just thanks them for signing up and reroutes to the original signup page
-      alert("Thank you for signing up!");
-      navigate("/signup");
+      //alert("Thank you for signing up!");
+      navigate("/SignupComplete");
       return false;
     } else if (currentStep < 0) {
       navigate("/signup");
@@ -101,7 +102,7 @@ export default function ShelterSignup() {
         </div>
         
         <div class="shelter-signup-step">
-        <ProgressBar step={2}></ProgressBar>
+        <ProgressBar2 step={2}></ProgressBar2>
           <label>Phone Number</label> <br></br>
           <input type='tel' id='phone' name='phone' value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)} required></input>
           <br></br> <br></br>
