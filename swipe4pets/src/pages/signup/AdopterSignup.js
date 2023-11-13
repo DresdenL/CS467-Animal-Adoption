@@ -1,5 +1,6 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import ProgressBar from '../../Components/progressBar';
 
 // CITATION
 // ACCESSED: November 2023
@@ -10,8 +11,30 @@ export default function AdopterSignUp() {
 
   const navigate = useNavigate();
 
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [addressLine1, setAddressLine1] = useState('');
+  const [addressLine2, setAddressLine2] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [zip, setZip] = useState('');
+
+
+  const addAdopterAccount = async () => {
+    const newAdopter = {firstName, lastName, email, password, phoneNumber, addressLine1, addressLine2, city, state, zip};
+    // placeholder -- hook response up to backend!
+    const response = {};
+  };
+
+
+
   // initiate step
   let currentStep = 0;
+
+  let progress_bar = 1;
 
 
   // function to show the current sign up step, pass function an integer and it will show that step
@@ -39,6 +62,7 @@ export default function AdopterSignUp() {
 
     // adjusts current step
     currentStep = currentStep + n;
+    progress_bar = progress_bar + n;
 
     // checks if it needs to submit, display step, or navigate back to first signup page
     if (currentStep >= steps.length) {
@@ -66,44 +90,46 @@ export default function AdopterSignUp() {
       <h1>Sign Up</h1>
       <form>
       <div class="adopter-signup-step">
-          <h1>Step 2</h1>
+          <ProgressBar step={progress_bar}></ProgressBar>
           <label>First Name</label> <br></br>
-          <input type='text' id='first-name' name='first-name' required></input>
+          <input id='firstName' name='firstName' value={firstName} onChange = {e => setFirstName(e.target.value)} type='text' required></input>
           <br></br> <br></br>
 
           <label>Last Name</label> <br></br>
-          <input type='text' id='last-name' name='last-name' required></input>
+          <input type='text' id='lastName' name='lastName' value={lastName} onChange={e => setLastName(e.target.value)} required></input>
           <br></br> <br></br>
 
           <label>Email</label> <br></br>
-          <input type='text' id='email' name='email' required></input>
+          <input type='email' id='email' name='email' value={email} onChange={e => setEmail(e.target.value)} required></input>
           <br></br> <br></br>
 
           <label>Password</label> <br></br>
-          <input type='password' id='password' name='password' required></input>
+          <input type='password' id='password' name='password' value={password} onChange={e => setPassword(e.target.value)} required></input>
           <br></br> <br></br>
         </div>
         
         <div class="adopter-signup-step">
-          <h1>Step 3</h1>
+          <ProgressBar step={progress_bar}></ProgressBar>
           <label>Phone Number</label> <br></br>
-          <input type='text' id='phone' name='phone' required></input>
+          <input type='tel' id='phone' name='phone' value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)} required></input>
           <br></br> <br></br>
 
-          <label>Street Address</label> <br></br>
-          <input type='text' id='street-address' name='street-address' required></input>
+          <label>Address</label> <br></br>
+          <input type='text' id='addressLine1' name='addressLine1' value={addressLine1} onChange={e => setAddressLine1(e.target.value)} placeholder="Street address or P.O. box" required></input>
+          <br></br> <br></br>
+          <input type='text' id='addressLine2' name='addressLine2' value={addressLine2} onChange={e => setAddressLine2(e.target.value)} placeholder="Unit, building, floor, etc." required></input>
           <br></br> <br></br>
 
           <label>City</label> <br></br>
-          <input type='text' id='city' name='city' required></input>
+          <input type='text' id='city' name='city' value={city} onChange={e => setCity(e.target.value)} required></input>
           <br></br> <br></br>
 
           <label>State</label> <br></br>
-          <input type='text' id='state' name='state' required></input>
+          <input type='text' id='state' name='state' value={state} onChange = {e => setState(e.target.value)} required></input>
           <br></br> <br></br>
 
           <label>ZIP code</label> <br></br>
-          <input type='text' id='zip-code' name='zip-code' required></input>
+          <input type='text' id='zip' name='zip' value = {zip} onChange={e => setZip(e.target.value)} required></input>
           <br></br> <br></br>
           </div>
 

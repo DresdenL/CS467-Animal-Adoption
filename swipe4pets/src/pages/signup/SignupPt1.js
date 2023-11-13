@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link , useNavigate } from 'react-router-dom';
+import ProgressBar from '../../Components/progressBar';
 
 export default function SignupPt1() {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ export default function SignupPt1() {
       <h1>Sign Up</h1>
       <form>
         <div class="signup">
-          <h1> Step 1</h1>
+          <h1><ProgressBar step={0} /></h1>
           <label>Select One</label>
           <br></br>
           <button type='button' id='shelterType' onClick={() => setAccountType(1)}>Shelter</button>

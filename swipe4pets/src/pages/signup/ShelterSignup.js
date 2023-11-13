@@ -1,10 +1,33 @@
-import React, {useEffect} from 'react';
-import { Link , useNavigate} from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import { useNavigate} from 'react-router-dom';
+import ProgressBar from '../../Components/progressBar';
+
+// CITATION
+// ACCESSED: November 2023
+// LINK: https://www.w3schools.com/howto/howto_js_form_steps.asp
+// USED: this helped me figure out the implementation of a multi-step form
 
 
 export default function ShelterSignup() {
 
   const navigate = useNavigate();
+
+  const [organizationName, setOrganizationName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [addressLine1, setAddressLine1] = useState('');
+  const [addressLine2, setAddressLine2] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [zip, setZip] = useState('');
+
+
+  const addOrganizationAccount = async () => {
+    const newAdopter = {organizationName, email, password, phoneNumber, addressLine1, addressLine2, city, state, zip};
+    // placeholder -- hook response up to backend!
+    const response = {};
+  };
 
   // initiate step
   let currentStep = 0;
@@ -36,8 +59,10 @@ export default function ShelterSignup() {
     // adjusts current step
     currentStep = currentStep + n;
 
-    // checks if it needs to submit or display step
+    // checks if it needs to submit, display step, or navigate back to first signup page
     if (currentStep >= steps.length) {
+      // this is PLACEHOLDER currently. eventually it will submit the form and actually sign up user
+      // for now it just thanks them for signing up and reroutes to the original signup page
       alert("Thank you for signing up!");
       navigate("/signup");
       return false;
@@ -61,40 +86,42 @@ export default function ShelterSignup() {
       <h1>Signup</h1>
       <form id='shelter-signup-form'>
         <div class="shelter-signup-step">
-          <h1>Step 2</h1>
+        <ProgressBar step={1}></ProgressBar>
           <label>Organization Name</label> <br></br>
-          <input type='text' id='org-name' name='org-name' required></input>
+          <input type='text' id='organization' name='organizationName' value={organizationName} onChange={e => setOrganizationName(e.target.value)} required></input>
           <br></br> <br></br>
 
           <label>Email</label> <br></br>
-          <input type='text' id='email' name='email' required></input>
+          <input type='text' id='email' name='email' value={email} onChange={e => setEmail(e.target.value)} required></input>
           <br></br> <br></br>
 
           <label>Password</label> <br></br>
-          <input type='password' id='password' name='password' required></input>
+          <input type='password' id='password' name='password' value={password} onChange={e => setPassword(e.target.value)} required></input>
           <br></br> <br></br>
         </div>
         
         <div class="shelter-signup-step">
-          <h1>Step 3</h1>
+        <ProgressBar step={2}></ProgressBar>
           <label>Phone Number</label> <br></br>
-          <input type='text' id='phone' name='phone' required></input>
+          <input type='tel' id='phone' name='phone' value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)} required></input>
           <br></br> <br></br>
 
-          <label>Street Address</label> <br></br>
-          <input type='text' id='street-address' name='street-address' required></input>
+          <label>Address</label> <br></br>
+          <input type='text' id='addressLine1' name='addressLine1' value={addressLine1} onChange={e => setAddressLine1(e.target.value)} placeholder="Street address or P.O. box" required></input>
+          <br></br> <br></br>
+          <input type='text' id='addressLine2' name='addressLine2' value={addressLine2} onChange={e => setAddressLine2(e.target.value)} placeholder="Unit, building, floor, etc." required></input>
           <br></br> <br></br>
 
           <label>City</label> <br></br>
-          <input type='text' id='city' name='city' required></input>
+          <input type='text' id='city' name='city' value={city} onChange={e => setCity(e.target.value)} required></input>
           <br></br> <br></br>
 
           <label>State</label> <br></br>
-          <input type='text' id='state' name='state' required></input>
+          <input type='text' id='state' name='state' value={state} onChange = {e => setState(e.target.value)} required></input>
           <br></br> <br></br>
 
           <label>ZIP code</label> <br></br>
-          <input type='text' id='zip-code' name='zip-code' required></input>
+          <input type='text' id='zip' name='zip' value = {zip} onChange={e => setZip(e.target.value)} required></input>
           <br></br> <br></br>
           </div>
 
