@@ -156,6 +156,43 @@ def deleteAnimal():
     }
 
 
+# Adopter methods
+@app.route('/adopterUser/<int:adopter_id>', methods=["GET"])
+def getAdopterUserById(adopter_id: int):
+    """
+    Returns the adopter user account associated with given adopter_id.
+    """
+    return {
+        None
+    }
+
+@app.route('/adopterUser', methods=["POST"])
+def createAdopterUser():
+    """
+    Creates a new adopter user account
+    """
+    return {
+        None
+    }
+
+@app.route('/adopterUser/<int:adopter_id>', methods=["PUT"])
+def updateAdopterUser():
+    """
+    Edits the adopter account associated with given adopter_user_id.
+    """
+    return {
+        None
+    }
+
+@app.route('/adopterUser/<int:adopter_id>', methods=["DELETE"])
+def deleteAdopterUser():
+    """
+    Deletes adopter user
+    """
+    return {
+        None
+    }
+
 
 if __name__ == "__main__":
     app.run()
