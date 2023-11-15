@@ -1,16 +1,38 @@
-from flask import Flask, request, Response
+from flask import Flask, request, Response, render_template, json, redirect
+from flask_mysqldb import MySQL
+from dotenv import load_dotenv
+import os
 import helpers
 import constants
 
-import time
+# load environment settings
+load_dotenv()
 
 app = Flask(__name__)
 
+# use loaded environment settings in app
+app.config['MYSQL_HOST'] = os.getenv('MYSQL_HOST')
+app.config['MYSQL_USER'] = os.getenv('MYSQL_USER')
+app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD')
+app.config['MYSQL_DB'] = os.getenv('MYSQL_DB')
+app.config['MYSQL_CURSORCLASS'] = os.getenv('MYSQL_CURSORCLASS')
+
+# start mySQL connection
+mysql = MySQL(app)
+
+# example SQL call, and test for successful environment variable retrieved
 @app.route('/api', methods=["GET", "POST"])
 def index():
+    query = "SELECT * FROM animal_gender;"
+    cur = mysql.connection.cursor()
+    cur.execute(query)
+    results = cur.fetchall()
     return {
-        "backend": "Flask Backend is active!"
+        "backend": "Flask Backend is active!",
+        "MySQL Results": str(results[0]),
+        "os stuff": os.getenv("MYSQL_HOST")
     }
+
 
 # Shelter methods
 @app.route('/shelterUser', methods=["GET"])
