@@ -15,6 +15,8 @@ app.config['MYSQL_HOST'] = os.getenv('MYSQL_HOST')
 app.config['MYSQL_USER'] = os.getenv('MYSQL_USER')
 app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD')
 app.config['MYSQL_DB'] = os.getenv('MYSQL_DB')
+
+# do not change this, allows connection cursor to function properly
 app.config['MYSQL_CURSORCLASS'] = "DictCursor"
 
 # start mySQL connection
@@ -29,7 +31,7 @@ def index():
     results = cur.fetchall()
     return {
         "backend": "Flask Backend is active!",
-        "MySQL Results": str(results[0]),
+        "MySQL Results": str(results[1]),
         "os stuff": os.getenv("MYSQL_HOST")
     }
 
