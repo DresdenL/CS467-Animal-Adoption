@@ -15,9 +15,15 @@ function ProgressBar({step}) {
             steps[0].style.backgroundColor = "#746AB0";
         } else if (step == 2) {
             steps[2].style.opacity = 1;
+            steps[2].style.border = "thick solid black";
+            steps[1].style.opacity = 1;
             steps[1].style.backgroundColor = "#746AB0";
+            steps[0].style.opacity = 1;
             steps[0].style.backgroundColor = "#746AB0";
         } else {
+            steps[2].style.opacity = 1;
+            steps[1].style.opacity = 1;
+            steps[0].style.opacity = 1;
             steps[2].style.backgroundColor = "#746AB0";
             steps[1].style.backgroundColor = "#746AB0";
             steps[0].style.backgroundColor = "#746AB0";
