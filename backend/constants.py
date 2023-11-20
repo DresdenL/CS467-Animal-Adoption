@@ -1,4 +1,4 @@
-CREATE_SHELTER_REQUEST_PARAMS = [
+CREATE_ORGANIZATION_REQUEST_PARAMS = [
     "organizationName",
     "email",
     "password",
@@ -24,3 +24,7 @@ CREATE_ANIMAL_REQUEST_PARAMS = [
     "age",
 ]
 
+GET_ANIMAL_REQUEST_PARAMS = [
+    "organization_id",
+    "animal_id"
+]
