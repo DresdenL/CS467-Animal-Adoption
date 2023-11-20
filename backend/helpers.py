@@ -17,8 +17,8 @@ def get_invalid_params(params: list, valid_params: list):
 def create_invalid_parameters_error_message(invalid_params: list):
     """
     Generates common error message for returning to users when they provide invalid parameters in API request
-    :param invalid_params:
-    :return:
+    :param invalid_params: list of invalid parameters to include in error message
+    :return: error message
     """
     error_msg = "The following invalid parameter(s) were provided:"
     for param in invalid_params:
