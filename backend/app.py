@@ -1,29 +1,34 @@
-from flask import Flask, request, Response, render_template, json, redirect
+from flask import Flask, send_from_directory, request, Response, render_template, json, redirect
+from flask_cors import CORS, cross_origin
 from flask_mysqldb import MySQL
 from dotenv import load_dotenv
 import os
+import json
+import datetime
 import helpers
 import constants
 
-# load environment settings
+app = Flask(__name__, static_folder='../swipe4pets/build', static_url_path="/")
+cors = CORS(app)
+
+#load environment variables
 load_dotenv()
-
-app = Flask(__name__)
-
-# use loaded environment settings in app
 app.config['MYSQL_HOST'] = os.getenv('MYSQL_HOST')
 app.config['MYSQL_USER'] = os.getenv('MYSQL_USER')
 app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD')
 app.config['MYSQL_DB'] = os.getenv('MYSQL_DB')
-
-# do not change this, allows connection cursor to function properly
 app.config['MYSQL_CURSORCLASS'] = "DictCursor"
-
-# start mySQL connection
 mysql = MySQL(app)
+
+# for testing, "proxy" in the frontend's package.json file should be "http://127.0.0.1:5000"
+# this needs to be changed back to "https://cs340-summer-2022-group-36.herokuapp.com/" when finished for the live site!
+# Flask's debug mode is enabled, which allows live updating for React and Flask both in your browser
+
+# ------------------------------don't touch above here except for adding any new imports!-----------------------------------------
 
 # example SQL call, and test for successful environment variable retrieved
 @app.route('/api', methods=["GET", "POST"])
+@cross_origin()
 def index():
     query = "SELECT * FROM animal_gender;"
     cur = mysql.connection.cursor()
@@ -31,13 +36,13 @@ def index():
     results = cur.fetchall()
     return {
         "backend": "Flask Backend is active!",
-        "MySQL Results": str(results[1]),
-        "os stuff": os.getenv("MYSQL_HOST")
+        "pet_gender": str(results[1])
     }
 
 
 # Shelter methods
 @app.route('/shelterUser', methods=["GET"])
+@cross_origin()
 def getShelterUsers():
     """
     Returns all shelter user accounts and account information.
@@ -50,6 +55,7 @@ def getShelterUsers():
     }
 
 @app.route('/shelterUser/<int:shelter_id>', methods=["GET"])
+@cross_origin()
 def getShelterUserById(shelter_id: int):
     """
     Returns the shelter user account associated with given shelter_id.
@@ -62,6 +68,7 @@ def getShelterUserById(shelter_id: int):
     }
 
 @app.route('/shelterUser', methods=["POST"])
+@cross_origin()
 def createShelterUser():
     """
     Creates a new shelter user account given the request information after
@@ -89,6 +96,7 @@ def createShelterUser():
     }
 
 @app.route('/shelterUser', methods=["PUT"])
+@cross_origin()
 def updateShelterUser():
     """
     Updates the shelter account associated with given shelter_user_id with
@@ -105,6 +113,7 @@ def updateShelterUser():
     }
 
 @app.route('/shelterUser', methods=["DELETE"])
+@cross_origin()
 def deleteShelterUser():
     """
     Deletes shelter user and all dependent object
@@ -116,6 +125,7 @@ def deleteShelterUser():
     }
 
 @app.route('/animal', methods=["POST"])
+@cross_origin()
 def createAnimal():
     """
     Creates an animal object with given information and persists to database.
@@ -143,6 +153,7 @@ def createAnimal():
     }
 
 @app.route('/animal', methods=["GET"])
+@cross_origin()
 def getAnimal():
     """
     Returns all animals persisted in database if ID is not given.
@@ -156,6 +167,7 @@ def getAnimal():
     }
 
 @app.route('/animal', methods=["PUT"])
+@cross_origin()
 def updateAnimal():
     """
     Updates animal associated with given id with given animal information
@@ -169,6 +181,7 @@ def updateAnimal():
     }
 
 @app.route('/animal', methods=["DELETE"])
+@cross_origin()
 def deleteAnimal():
     """
     Deletes animal
@@ -179,6 +192,19 @@ def deleteAnimal():
         "animalAPI": "DELETE - deleteAnimal not available at this time"
     }
 
+# ------------------------------don't touch below here!-----------------------------------------
+
+# serve index.html for React rendering
+@app.route("/")
+@cross_origin()
+def serve():
+    return send_from_directory(app.static_folder, "index.html")
+
+
+# catch 404 errors, allows us to refresh any main page and have it rendered
+@app.errorhandler(404)
+def not_found(e):
+    return send_from_directory(app.static_folder, "index.html")
 
 
 if __name__ == "__main__":
