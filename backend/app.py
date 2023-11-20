@@ -1,14 +1,20 @@
-from flask import Flask, request, Response, render_template, json, redirect
+from flask import Flask, send_from_directory, request, Response, render_template, json, redirect
+from flask_cors import CORS, cross_origin
 from flask_mysqldb import MySQL
 from dotenv import load_dotenv
 import os
 import helpers
 import constants
 
+# DO NOT CHANGE SECTION BELOW
+# ____________________________________
+
 # load environment settings
 load_dotenv()
 
-app = Flask(__name__)
+# set up app
+app = Flask(__name__, static_folder="../swipe4pets/build", static_url_path="/")
+cors= CORS(app)
 
 # use loaded environment settings in app
 app.config['MYSQL_HOST'] = os.getenv('MYSQL_HOST')
@@ -16,14 +22,21 @@ app.config['MYSQL_USER'] = os.getenv('MYSQL_USER')
 app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD')
 app.config['MYSQL_DB'] = os.getenv('MYSQL_DB')
 
-# do not change this, allows connection cursor to function properly
+# allows connection cursor to function properly
 app.config['MYSQL_CURSORCLASS'] = "DictCursor"
 
 # start mySQL connection
 mysql = MySQL(app)
 
+# ____________________________________
+# DO NOT CHANGE SECTION ABOVE
+
+# for testing, "proxy" in the swipe4pets folder's package.json file needs to be changed to "http://127.0.0.1:5000"
+# this needs to be changed back to "https://swipe4pets-844a31ed9224.herokuapp.com/" when finished for the live site!
+
 # example SQL call, and test for successful environment variable retrieved
 @app.route('/api', methods=["GET", "POST"])
+@cross_origin()
 def index():
     query = "SELECT * FROM animal_gender;"
     cur = mysql.connection.cursor()
@@ -31,12 +44,12 @@ def index():
     results = cur.fetchall()
     return {
         "backend": "Flask Backend is active!",
-        "MySQL Results": str(results[1]),
-        "os stuff": os.getenv("MYSQL_HOST")
+        "pet_gender": str(results[1])
     }
 
 
 # Shelter methods
+@cross_origin()
 @app.route('/organizationUser', methods=["GET"])
 def get_organization_users():
     """
@@ -64,6 +77,7 @@ def get_organization_users():
 
 
 @app.route('/organizationUser/<int:organization_id>', methods=["GET"])
+@cross_origin()
 def get_organization_user_by_id(organization_id: int):
     """
     Returns the organization user account associated with given organization_id.
@@ -90,6 +104,7 @@ def get_organization_user_by_id(organization_id: int):
 
 
 @app.route('/organizationUser', methods=["POST"])
+@cross_origin()
 def create_organization_user():
     """
     Creates a new shelter user account given the request information after
@@ -124,6 +139,7 @@ def create_organization_user():
 
 
 @app.route('/organizationUser/<int:organization_id>', methods=["PUT"])
+@cross_origin()
 def update_organization_user():
     """
     Updates the organization account associated with given organization_id with
@@ -153,6 +169,7 @@ def update_organization_user():
 
 
 @app.route('/organizationUser/<int:organization_id>', methods=["DELETE"])
+@cross_origin()
 def delete_organization_user(organization_id: int):
     """
     Deletes organization user and all dependent objects
@@ -176,6 +193,7 @@ def delete_organization_user(organization_id: int):
 
 
 @app.route('/animal', methods=["POST"])
+@cross_origin()
 def create_animal():
     """
     Creates an animal object with given information and persists to database.
@@ -201,6 +219,7 @@ def create_animal():
 
 
 @app.route('/animal', methods=["GET"])
+@cross_origin()
 def get_animal():
     """
     Returns all animals persisted in database if ID is not given.
@@ -234,6 +253,7 @@ def get_animal():
 
 
 @app.route('/animal/<int:animal_id>', methods=["PUT"])
+@cross_origin()
 def update_animal():
     """
     Updates animal associated with given id
@@ -258,6 +278,7 @@ def update_animal():
 
 
 @app.route('/animal/<int:animal_id>', methods=["DELETE"])
+@cross_origin()
 def delete_animal(animal_id: int):
     """
     Deletes animal associated with given ID
@@ -278,6 +299,21 @@ def delete_animal(animal_id: int):
     return {
         "animalAPI": "DELETE - deleteAnimal not available at this time"
     }
+
+
+# ------------------------------don't touch below here!-----------------------------------------
+
+# serve index.html for React rendering
+@app.route("/")
+@cross_origin()
+def serve():
+    return send_from_directory(app.static_folder, "index.html")
+
+
+# catch 404 errors, allows us to refresh any main page and have it rendered
+@app.errorhandler(404)
+def not_found(e):
+    return send_from_directory(app.static_folder, "index.html")
 
 
 if __name__ == "__main__":
