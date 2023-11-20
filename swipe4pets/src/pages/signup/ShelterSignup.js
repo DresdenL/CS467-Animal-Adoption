@@ -68,22 +68,46 @@ export default function ShelterSignup() {
     steps[currentStep].style.display = 'none';
 
     // adjusts current step
+    let previousStep = currentStep;
     currentStep = currentStep + n;
 
     // checks if it needs to submit, display step, or navigate back to first signup page
     if (currentStep >= steps.length) {
-      // this is PLACEHOLDER currently. eventually it will submit the form and actually sign up user
-      // for now it just thanks them for signing up and reroutes to the original signup page
-      //alert("Thank you for signing up!");
-      navigate("/SignupComplete");
-      return false;
+      if (checkStep(1)) {
+        navigate("/SignupComplete");
+        return false;
+      } else {
+        alert("Missing fields");
+      }
     } else if (currentStep < 0) {
       navigate("/signup");
       return false;
     } else {
-      showStep(currentStep);
+      if (checkStep(0)) {
+        showStep(currentStep);
+      } else {
+        alert("Missing fields");
+      }
     }
-  }
+  };
+
+
+  const checkStep = (step) => {
+    if (step === 0) {
+      if (organizationName === '' || email === '' || password === '') {
+        return false
+      } else {
+        return true
+      }
+    }
+    if (step === 1) {
+      if (phoneNumber === '' || addressLine1 === '' || addressLine2 === '' || city === '' || state === '' || zip === '') {
+        return false
+      } else {
+        return true
+      }
+    }
+  };
 
   // loads initial step
   useEffect(() => {

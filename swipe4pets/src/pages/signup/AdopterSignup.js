@@ -86,6 +86,23 @@ export default function AdopterSignUp() {
     }
   }
 
+  const checkStep = (step) => {
+    if (step === 0) {
+      if (firstName === '' || lastName === '' || email === '' || password === '') {
+        return false
+      } else {
+        return true
+      }
+    }
+    if (step === 1) {
+      if (phoneNumber === '' || addressLine1 === '' || addressLine2 === '' || city === '' || state === '' || zip === '') {
+        return false
+      } else {
+        return true
+      }
+    }
+  };
+
   // loads initial step
   useEffect(() => {
     showStep(currentStep);
