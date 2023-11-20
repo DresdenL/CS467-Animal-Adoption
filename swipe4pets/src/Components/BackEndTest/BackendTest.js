@@ -23,12 +23,7 @@ export default function BackendTest({ apiResponse, setApiResponse }) {
 
     return (
         <div class="center">
-            {loading === false ? 
-                <div>
-                    <h1>{apiResponse.backend}</h1>
-                    <h2>A sample pet gender: {apiResponse.pet_gender}</h2>
-                </div>
-                : <h1>Loading... <Spinner></Spinner></h1>}
+            {loading === false ? <h1>{apiResponse.backend}</h1> : <h1>Loading... <Spinner></Spinner></h1>}
             <Link to="/"><button>Return To Home Page</button></Link>
         </div>
     )
