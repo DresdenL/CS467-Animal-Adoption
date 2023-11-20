@@ -314,10 +314,36 @@ def getAdopterUserById(adopter_id: int):
 @app.route('/adopterUser', methods=["POST"])
 def createAdopterUser():
     """
-    Creates a new adopter user account
+    Creates a new adopter user account.
+
+    Returns success code if account is successfully created.
     """
+ 
+    req = request.args.to_dict()
+    invalid_params = helpers.get_invalid_params(
+        req.keys(), constants.CREATE_ADOPTER_REQUEST_PARAMS
+    )
+    if len(invalid_params) > 0:
+        error_msg = helpers.create_invalid_parameters_error_message(
+            invalid_params
+        )
+        return Response(
+            error_msg,
+            400
+        )
+    firstName = req["firstName"]
+    lastName = req["lastName"]
+    email = req["email"]
+    phoneNumber = req["phoneNumber"]
+    addressLine1 = req["addressLine1"]
+    addressLine2 = req["addressLine2"]
+    city = req["city"]
+    state = req["state"]
+    zip = req["zip"]
+
+    # TO-DO: add functions to create profile [assign ID, store password]
     return {
-        None
+        "adopterUserAPI": "POST - createAdoptionUser still in progress, not available at this time"
     }
 
 @app.route('/adopterUser/<int:adopter_id>', methods=["PUT"])

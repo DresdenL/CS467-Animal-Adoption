@@ -27,7 +27,17 @@ export default function ShelterSignup() {
   const addOrganizationAccount = async () => {
     const newAdopter = {organizationName, email, password, phoneNumber, addressLine1, addressLine2, city, state, zip};
     // placeholder -- hook response up to backend!
-    const response = {};
+    const response = await fetch('/api/organizationUser', {
+      method: 'POST',
+      body: JSON.stringify(newAdopter),
+      headers: {'Content-Type': 'application/json'},
+    })
+    if (response.status === 201) {
+      alert("Thank you for signing up! You will be directed to your home page.");
+      navigate('/ShelterHome');
+    } else {
+      alert(`Failed to add account, status code = ${response.status}`);
+    }
   };
 
   // initiate step

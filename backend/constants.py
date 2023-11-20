@@ -28,3 +28,17 @@ GET_ANIMAL_REQUEST_PARAMS = [
     "organization_id",
     "animal_id"
 ]
+
+CREATE_ADOPTER_REQUEST_PARAMS = [
+    "firstName",
+    "lastName",
+    "email",
+    "password",
+    "addressLine1",
+    "addressLine2",
+    "city",
+    "state",
+    "zip",
+    "userName",
+    "phoneNumber"
+]
