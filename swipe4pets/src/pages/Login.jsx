@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
+import NavBar from "../Components/NavBar.jsx";
 
 export default function Login() {
   const [selectedType, setSelectedType] = useState('/ShelterHome'); 
@@ -19,7 +20,9 @@ export default function Login() {
   };  
 
   return (
-    <Container>
+    <div>
+      <NavBar />
+      <Container>
       <Row>
         <Col md={{ span: 6, offset: 4 }}>
           <h1>Login</h1>
@@ -61,6 +64,8 @@ export default function Login() {
     </Row>
 
     </Container>
+    </div>
+    
     
   );
 } 
