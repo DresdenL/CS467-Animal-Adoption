@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import IMG_9432 from './IMG_9432.jpeg';
 
-const CreateProfile = () => {
+const ImageUploadTest = () => {
 
     const [apiResponse, setApiResponse] = useState({"backend": ""});
     const [instantImagePreview, setInstantImagePreview] = useState(IMG_9432);
@@ -72,4 +72,4 @@ const CreateProfile = () => {
     );
 };
 
-export default CreateProfile;
+export default ImageUploadTest;
