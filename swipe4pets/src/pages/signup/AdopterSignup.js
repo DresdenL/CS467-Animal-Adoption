@@ -2,6 +2,9 @@ import React, {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProgressBar from '../../Components/progressBar';
 import ProgressBar2 from '../../Components/progressBar2';
+import AdopterStep1 from '../../Components/Signup/Adopter/adopterStep1';
+import AdopterStep2 from '../../Components/Signup/Adopter/adopterStep2';
+import CompleteSignup from '../../Components/completeSignup';
 
 // CITATION
 // ACCESSED: November 2023
@@ -42,49 +45,56 @@ export default function AdopterSignUp() {
 
 
   // initiate step
-  let currentStep = 0;
+  const [currentStep, setStep] = useState(0)
 
 
   // function to show the current sign up step, pass function an integer and it will show that step
-  const showStep = (n) => {
-    let steps = document.getElementsByClassName("adopter-signup-step");
-    
-    // show step
-    steps[n].style.display = "block";
-
-    // check if next button needs to say next or submit
-    if (n == (steps.length - 1)) {
-      document.getElementById("nextButton").innerHTML = "Submit";
-    } else {
+  const showStep = () => {
+    let signup_buttons = document.getElementsByClassName("signup-buttons");
+    // first step
+    if (currentStep === 0) {
       document.getElementById("nextButton").innerHTML = "Next";
+      return <AdopterStep1 firstName={firstName} lastName={lastName} email={email} password={password} setFirstName={setFirstName} setLastName={setLastName} setEmail={setEmail} setPassword={setPassword} />;
+    // second step
+    } else if (currentStep === 1) { 
+      document.getElementById("nextButton").innerHTML = "Submit";
+      return  <AdopterStep2 phoneNumber={phoneNumber} setPhoneNumber={setPhoneNumber} addressLine1={addressLine1} setAddressLine1={setAddressLine1} addressLine2={addressLine2} setAddressLine2={setAddressLine2} city={city} setCity={setCity} state={state} setState={setState} zip={zip} setZip={setZip} />;
+    // finished page
+    } else if (currentStep === 2) {
+      signup_buttons[0].style.display = 'none';
+      return  <CompleteSignup accountType={1} />;
     }
   }
 
-  // function to load the next (or previous) step, called by next/submit button
-  // next/submit button passes an integer to add to the currentStep, then showStep will be called again
-  const nextStep = (n) => {
-    let steps = document.getElementsByClassName("adopter-signup-step");
-
-    // hides current step
-    steps[currentStep].style.display = 'none';
-
-    // adjusts current step
-    currentStep = currentStep + n;
-
-    // checks if it needs to submit, display step, or navigate back to first signup page
-    if (currentStep >= steps.length) {
-      // this is PLACEHOLDER currently. eventually it will submit the form and actually sign up user
-      // for now it just thanks them for signing up and reroutes to the original signup page
-      //alert("Thank you for signing up!");
-      navigate("/SignupComplete");
-      return false;
-    } else if (currentStep < 0) {
-      navigate("/signup");
-      return false;
-    } else {
-      showStep(currentStep);
-    }
+  // event handler for hitting back button
+  const prevStep = () => {
+    setStep(currentStep - 1);
+      if (currentStep < 0) {
+        navigate("/signup");
+        return false;
+      } else {
+        return false;
+      }
   }
+  
+  // event handler for hitting next button; checks if all fields are filled out 
+  const nextStep = () => {
+    if (currentStep === 1) {
+      if (checkStep(1)) {
+        setStep(currentStep + 1);
+      } else {
+        alert("Missing fields");
+        return false;
+      }
+    } else if (currentStep === 0){
+      if (checkStep(0)) {
+        setStep(currentStep + 1);
+      } else {
+        alert("Missing fields");
+        return false;
+      }
+    }
+  };
 
   const checkStep = (step) => {
     if (step === 0) {
@@ -103,66 +113,16 @@ export default function AdopterSignUp() {
     }
   };
 
-  // loads initial step
-  useEffect(() => {
-    showStep(currentStep);
-  });
-
   return (
 
     <div class="center">
-      <h1>Sign Up</h1>
-      <form>
-      <div class="adopter-signup-step">
-          <ProgressBar step={1}></ProgressBar>
-          <label>First Name</label> <br></br>
-          <input id='firstName' name='firstName' value={firstName} onChange = {e => setFirstName(e.target.value)} type='text' required></input>
-          <br></br> <br></br>
+            {showStep()}
 
-          <label>Last Name</label> <br></br>
-          <input type='text' id='lastName' name='lastName' value={lastName} onChange={e => setLastName(e.target.value)} required></input>
-          <br></br> <br></br>
-
-          <label>Email</label> <br></br>
-          <input type='email' id='email' name='email' value={email} onChange={e => setEmail(e.target.value)} required></input>
-          <br></br> <br></br>
-
-          <label>Password</label> <br></br>
-          <input type='password' id='password' name='password' value={password} onChange={e => setPassword(e.target.value)} required></input>
-          <br></br> <br></br>
+        <div class='signup-buttons'>
+        <button type='button' id='backButton' onClick={() => prevStep()}>Back</button>
+        &nbsp; &nbsp;
+        <button type='button' id='nextButton' onClick={() => nextStep()}> Next </button>
         </div>
-        
-        <div class="adopter-signup-step">
-          <ProgressBar2 step={2}></ProgressBar2>
-          <label>Phone Number</label> <br></br>
-          <input type='tel' id='phone' name='phone' value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)} required></input>
-          <br></br> <br></br>
-
-          <label>Address</label> <br></br>
-          <input type='text' id='addressLine1' name='addressLine1' value={addressLine1} onChange={e => setAddressLine1(e.target.value)} placeholder="Street address or P.O. box" required></input>
-          <br></br> <br></br>
-          <input type='text' id='addressLine2' name='addressLine2' value={addressLine2} onChange={e => setAddressLine2(e.target.value)} placeholder="Unit, building, floor, etc." required></input>
-          <br></br> <br></br>
-
-          <label>City</label> <br></br>
-          <input type='text' id='city' name='city' value={city} onChange={e => setCity(e.target.value)} required></input>
-          <br></br> <br></br>
-
-          <label>State</label> <br></br>
-          <input type='text' id='state' name='state' value={state} onChange = {e => setState(e.target.value)} required></input>
-          <br></br> <br></br>
-
-          <label>ZIP code</label> <br></br>
-          <input type='text' id='zip' name='zip' value = {zip} onChange={e => setZip(e.target.value)} required></input>
-          <br></br> <br></br>
-          </div>
-
-          <div class='signup-buttons'>
-          <button type='button' id='backButton' onClick={() => nextStep(-1)}>Back</button>
-          &nbsp; &nbsp;
-          <button type='button' id='nextButton' onClick={() => nextStep(1)}> Next </button>
-          </div>
-      </form>
     </div>
   );
 };
