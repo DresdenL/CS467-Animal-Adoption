@@ -16,7 +16,6 @@ import AdopterSignUp from './pages/signup/AdopterSignup';
 import SwipeProfiles from "./pages/adopter/SwipeProfiles.jsx";
 import BackendTest from "./Components/BackEndTest/BackendTest";
 
-
 export default function App() {
   const [apiResponse, setApiResponse] = useState({});
 
@@ -27,12 +26,12 @@ export default function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="ShelterHome" element={<ShelterHome />} />
           <Route exact path="ManageShelterAccount" element={<ManageShelterAccount />} />
-          <Route exact path="DeleteAlert" element={<DeleteAlert />} />
-          <Route exact path="CreateProfile" element={<CreateProfile />} />
-          <Route exact path="ManageProfile" element={<ManageProfile />} />
-          <Route exact path="ViewProfile" element={<ViewProfile />} />
-          <Route exact path="AdopterHome" element={<AdopterHome />} />
-          <Route exact path="SignupComplete" element={<SignupComplete />} />
+          <Route exact path='DeleteAlert' element={<DeleteAlert />} />
+          <Route exact path='CreateProfile' element={<CreateProfile />} />
+          <Route exact path='ManageProfile' element={<ManageProfile />} />
+          <Route exact path='ViewProfile' element={<ViewProfile />} />
+          <Route exact path='AdopterHome' element={<AdopterHome />} />
+          <Route exact path='EditAdopter' element={<EditAdopter />} />
           <Route exact path='SwipeProfiles' element={<SwipeProfiles />} />
           <Route exact path='Login' element={<Login />} />
           <Route exact path='Signup' element={<SignupPt1 />} />
