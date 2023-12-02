@@ -16,7 +16,6 @@ import ShelterSignup from "./pages/signup/ShelterSignup";
 import AdopterSignUp from "./pages/signup/AdopterSignup";
 import SwipeProfiles from "./pages/adopter/SwipeProfiles.jsx";
 import BackendTest from "./Components/BackEndTest/BackendTest";
-import SignupComplete from "./pages/signup/SignupComplete";
 
 export default function App() {
   const [apiResponse, setApiResponse] = useState({});
@@ -38,7 +37,6 @@ export default function App() {
           <Route exact path='ViewProfile' element={<ViewProfile />} />
           <Route exact path='AdopterHome' element={<AdopterHome />} />
           <Route exact path='EditAdopter' element={<EditAdopter />} />
-          <Route exact path='SignupComplete' element={<SignupComplete />} />
           <Route exact path='SwipeProfiles' element={<SwipeProfiles />} />
           <Route exact path='Login' element={<Login />} />
           <Route exact path='Signup' element={<SignupPt1 />} />
