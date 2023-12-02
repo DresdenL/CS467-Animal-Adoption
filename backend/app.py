@@ -2,6 +2,8 @@ from flask import Flask, send_from_directory, request, Response, render_template
 from flask_cors import CORS, cross_origin
 from flask_mysqldb import MySQL
 from dotenv import load_dotenv
+import boto3
+import uuid
 import os
 import helpers
 import constants
@@ -25,8 +27,22 @@ app.config['MYSQL_DB'] = os.getenv('MYSQL_DB')
 # allows connection cursor to function properly
 app.config['MYSQL_CURSORCLASS'] = "DictCursor"
 
+#configure environment for image upload through s3
+app.config['S3_BUCKET'] = os.getenv('S3_BUCKET')
+app.config['S3_KEY'] = os.getenv('S3_KEY')
+app.config['S3_SECRET'] = os.getenv('S3_SECRET')
+app.config['S3_LOCATION'] = os.getenv('S3_LOCATION')
+
 # start mySQL connection
 mysql = MySQL(app)
+
+# configure s3
+s3 = boto3.resource(
+    "s3", 
+    aws_access_key_id=app.config['S3_KEY'],
+    aws_secret_access_key=app.config['S3_SECRET']
+)
+bucket_name = app.config['S3_BUCKET']
 
 # ____________________________________
 # DO NOT CHANGE SECTION ABOVE
@@ -47,6 +63,19 @@ def index():
         "pet_gender": str(results[1])
     }
 
+@app.route('/api/image_upload', methods=["POST"])
+@cross_origin()
+def image_upload():
+
+    file = request.files['file']
+
+    new_filename = uuid.uuid4().hex + "." + file.filename.rsplit(".", 1)[1].lower()  
+
+    s3.Bucket(bucket_name).upload_fileobj(file, new_filename)
+
+    return {
+        "backend": "https://{}.s3.us-east-2.amazonaws.com/{}".format(bucket_name, new_filename)
+    }
 
 # Shelter methods
 @cross_origin()
