@@ -3,39 +3,51 @@ import { useNavigate, Link} from 'react-router-dom';
 import ShelterStep1 from '../../Components/Signup/Shelter/shelterStep1';
 import ShelterStep2 from '../../Components/Signup/Shelter/shelterStep2';
 import CompleteSignup from '../../Components/completeSignup';
+import ProgressBar from "../../Components/progressBar";
+import ProgressBar2 from "../../Components/progressBar2";
+import NavBar from "../../Components/NavBar.jsx";
 
 // CITATION
 // ACCESSED: November 2023
 // LINK: https://www.w3schools.com/howto/howto_js_form_steps.asp
 // USED: this helped me figure out the implementation of a multi-step form
 
-
 export default function ShelterSignup() {
-
   const navigate = useNavigate();
 
-  const [organizationName, setOrganizationName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [addressLine1, setAddressLine1] = useState('');
-  const [addressLine2, setAddressLine2] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
-  const [zip, setZip] = useState('');
-
+  const [organizationName, setOrganizationName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [addressLine1, setAddressLine1] = useState("");
+  const [addressLine2, setAddressLine2] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zip, setZip] = useState("");
 
   const addOrganizationAccount = async () => {
-    const newAdopter = {organizationName, email, password, phoneNumber, addressLine1, addressLine2, city, state, zip};
+    const newAdopter = {
+      organizationName,
+      email,
+      password,
+      phoneNumber,
+      addressLine1,
+      addressLine2,
+      city,
+      state,
+      zip,
+    };
     // placeholder -- hook response up to backend!
-    const response = await fetch('/api/organizationUser', {
-      method: 'POST',
+    const response = await fetch("/api/organizationUser", {
+      method: "POST",
       body: JSON.stringify(newAdopter),
-      headers: {'Content-Type': 'application/json'},
-    })
+      headers: { "Content-Type": "application/json" },
+    });
     if (response.status === 201) {
-      alert("Thank you for signing up! You will be directed to your home page.");
-      navigate('/ShelterHome');
+      alert(
+        "Thank you for signing up! You will be directed to your home page."
+      );
+      navigate("/ShelterHome");
     } else {
       alert(`Failed to add account, status code = ${response.status}`);
     }
@@ -60,7 +72,7 @@ export default function ShelterSignup() {
       signup_buttons[0].style.display = 'none';
       return  <CompleteSignup accountType={0} />;
     }
-  }
+  };
 
   // event handler for hitting back button
   const prevStep = () => {
@@ -92,24 +104,29 @@ export default function ShelterSignup() {
     }
   };
 
-
   const checkStep = (step) => {
     if (step === 0) {
-      if (organizationName === '' || email === '' || password === '') {
-        return false
+      if (organizationName === "" || email === "" || password === "") {
+        return false;
       } else {
-        return true
+        return true;
       }
     }
     if (step === 1) {
-      if (phoneNumber === '' || addressLine1 === '' || addressLine2 === '' || city === '' || state === '' || zip === '') {
-        return false
+      if (
+        phoneNumber === "" ||
+        addressLine1 === "" ||
+        addressLine2 === "" ||
+        city === "" ||
+        state === "" ||
+        zip === ""
+      ) {
+        return false;
       } else {
-        return true
+        return true;
       }
     }
   };
-
 
 
   return (
@@ -125,4 +142,4 @@ export default function ShelterSignup() {
 
     </div>
   );
-};
+}

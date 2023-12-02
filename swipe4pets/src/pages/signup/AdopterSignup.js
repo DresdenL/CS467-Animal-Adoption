@@ -5,6 +5,7 @@ import ProgressBar2 from '../../Components/progressBar2';
 import AdopterStep1 from '../../Components/Signup/Adopter/adopterStep1';
 import AdopterStep2 from '../../Components/Signup/Adopter/adopterStep2';
 import CompleteSignup from '../../Components/completeSignup';
+import NavBar from "../../Components/NavBar.jsx";
 
 // CITATION
 // ACCESSED: November 2023
@@ -12,41 +13,49 @@ import CompleteSignup from '../../Components/completeSignup';
 // USED: this helped me figure out the implementation of a multi-step form
 
 export default function AdopterSignUp() {
-
   const navigate = useNavigate();
 
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [addressLine1, setAddressLine1] = useState('');
-  const [addressLine2, setAddressLine2] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
-  const [zip, setZip] = useState('');
-
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [addressLine1, setAddressLine1] = useState("");
+  const [addressLine2, setAddressLine2] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zip, setZip] = useState("");
 
   const addAdopterAccount = async () => {
-    const newAdopter = {firstName, lastName, email, password, phoneNumber, addressLine1, addressLine2, city, state, zip};
-    const response = await fetch('/api/adopterUser', {
-      method: 'POST',
+    const newAdopter = {
+      firstName,
+      lastName,
+      email,
+      password,
+      phoneNumber,
+      addressLine1,
+      addressLine2,
+      city,
+      state,
+      zip,
+    };
+    const response = await fetch("/api/adopterUser", {
+      method: "POST",
       body: JSON.stringify(newAdopter),
-      headers: {'Content-Type': 'application/json'},
-    })
+      headers: { "Content-Type": "application/json" },
+    });
     if (response.status === 201) {
-      alert("Thank you for signing up! You will be directed to your home page.");
-      navigate('/ShelterHome');
+      alert(
+        "Thank you for signing up! You will be directed to your home page."
+      );
+      navigate("/ShelterHome");
     } else {
       alert(`Failed to add account, status code = ${response.status}`);
     }
   };
 
-
-
   // initiate step
   const [currentStep, setStep] = useState(0)
-
 
   // function to show the current sign up step, pass function an integer and it will show that step
   const showStep = () => {
@@ -64,7 +73,8 @@ export default function AdopterSignUp() {
       signup_buttons[0].style.display = 'none';
       return  <CompleteSignup accountType={1} />;
     }
-  }
+  };
+
 
   // event handler for hitting back button
   const prevStep = () => {
@@ -98,23 +108,34 @@ export default function AdopterSignUp() {
 
   const checkStep = (step) => {
     if (step === 0) {
-      if (firstName === '' || lastName === '' || email === '' || password === '') {
-        return false
+      if (
+        firstName === "" ||
+        lastName === "" ||
+        email === "" ||
+        password === ""
+      ) {
+        return false;
       } else {
-        return true
+        return true;
       }
     }
     if (step === 1) {
-      if (phoneNumber === '' || addressLine1 === '' || addressLine2 === '' || city === '' || state === '' || zip === '') {
-        return false
+      if (
+        phoneNumber === "" ||
+        addressLine1 === "" ||
+        addressLine2 === "" ||
+        city === "" ||
+        state === "" ||
+        zip === ""
+      ) {
+        return false;
       } else {
-        return true
+        return true;
       }
     }
   };
 
   return (
-
     <div class="center">
             {showStep()}
 
@@ -123,6 +144,7 @@ export default function AdopterSignUp() {
         &nbsp; &nbsp;
         <button type='button' id='nextButton' onClick={() => nextStep()}> Next </button>
         </div>
+
     </div>
   );
-};
+}
