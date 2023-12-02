@@ -1,5 +1,7 @@
 import React from 'react';
 import profile_pic from './temp/profile_pic.png';
+import { Link } from 'react-router-dom';
+import Button from "react-bootstrap/Button";
 
 function Profile() {
   // Implement the user portfolio component here
@@ -11,6 +13,7 @@ function Profile() {
         <div><strong>Name: Jane Doe</strong></div>
         <div><strong>Email: janedoe@gmail.com</strong></div>
         <div><strong>Location: Los Angeles, CA</strong></div> 
+        <Link to="/EditAdopter"><Button>Edit</Button></Link>
       </div>
     </div>
   );

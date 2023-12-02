@@ -1,18 +1,19 @@
-import './App.css'
-import { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ShelterHome from './pages/shelter/ShelterHome';
-import DeleteAlert from './pages/shelter/DeleteAlert';
-import ManageShelterAccount from './pages/shelter/ManageShelterAccount';
-import ManageProfile from './pages/shelter/ManageProfile';
-import ViewProfile from './pages/shelter/ViewProfile';
-import AdopterHome from './pages/adopter/AdopterHome';
-import Home from './pages/Home';
-import CreateProfile from './pages/shelter/CreateProfile';
-import Login from './pages/Login';
-import SignupPt1 from './pages/signup/SignupPt1';
-import ShelterSignup from './pages/signup/ShelterSignup';
-import AdopterSignUp from './pages/signup/AdopterSignup';
+import "./App.css";
+import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ShelterHome from "./pages/shelter/ShelterHome";
+import DeleteAlert from "./pages/shelter/DeleteAlert";
+import ManageShelterAccount from "./pages/shelter/ManageShelterAccount";
+import ManageProfile from "./pages/shelter/ManageProfile";
+import ViewProfile from "./pages/shelter/ViewProfile";
+import AdopterHome from "./pages/adopter/AdopterHome";
+import EditAdopter from "./pages/adopter/EditAdopter";
+import Home from "./pages/Home";
+import CreateProfile from "./pages/shelter/CreateProfile";
+import Login from "./pages/Login";
+import SignupPt1 from "./pages/signup/SignupPt1";
+import ShelterSignup from "./pages/signup/ShelterSignup";
+import AdopterSignUp from "./pages/signup/AdopterSignup";
 import SwipeProfiles from "./pages/adopter/SwipeProfiles.jsx";
 import BackendTest from "./Components/BackEndTest/BackendTest";
 
@@ -23,9 +24,13 @@ export default function App() {
     <div>
       <Router>
         <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="ShelterHome" element={<ShelterHome />} />
-          <Route exact path="ManageShelterAccount" element={<ManageShelterAccount />} />
+          <Route exact path='/' element={<Home />} />
+          <Route exact path='ShelterHome' element={<ShelterHome />} />
+          <Route
+            exact
+            path='ManageShelterAccount'
+            element={<ManageShelterAccount />}
+          />
           <Route exact path='DeleteAlert' element={<DeleteAlert />} />
           <Route exact path='CreateProfile' element={<CreateProfile />} />
           <Route exact path='ManageProfile' element={<ManageProfile />} />

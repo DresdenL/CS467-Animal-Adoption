@@ -307,9 +307,14 @@ def getAdopterUserById(adopter_id: int):
     """
     Returns the adopter user account associated with given adopter_id.
     """
-    return {
-        None
-    }
+    query = "SELECT " + str(adopter_id) + " FROM adopter;"
+    cur = mysql.connection.cursor()
+    cur.execute(query)
+    results = cur.fetchall()
+    if result:
+        return results, 200
+    else:
+        return jsonify({'error': 'Item not found'}), 404
 
 @app.route('/adopterUser', methods=["POST"])
 def createAdopterUser():
@@ -360,9 +365,14 @@ def deleteAdopterUser():
     """
     Deletes adopter user
     """
-    return {
-        None
-    }
+    query = "DELETE FROM adopter WHERE id=" + str(adopter_id) + ";"
+    cur = mysql.connection.cursor()
+    cur.execute(query)
+    results = cur.fetchall()
+    if result:
+        return results, 200
+    else:
+        return jsonify({'error': 'Item not found'}), 404
 
 # ------------------------------don't touch below here!-----------------------------------------
 
