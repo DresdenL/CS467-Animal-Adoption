@@ -345,7 +345,7 @@ def getAdopterUserById(adopter_id: int):
     else:
         return jsonify({'error': 'Item not found'}), 404
 
-@app.route('/adopterUser', methods=["POST"])
+@app.route('/api/adopterUser', methods=["POST"])
 def createAdopterUser():
     """
     Creates a new adopter user account.
@@ -353,32 +353,24 @@ def createAdopterUser():
     Returns success code if account is successfully created.
     """
  
-    req = request.args.to_dict()
-    invalid_params = helpers.get_invalid_params(
-        req.keys(), constants.CREATE_ADOPTER_REQUEST_PARAMS
-    )
-    if len(invalid_params) > 0:
-        error_msg = helpers.create_invalid_parameters_error_message(
-            invalid_params
-        )
-        return Response(
-            error_msg,
-            400
-        )
-    firstName = req["firstName"]
-    lastName = req["lastName"]
-    email = req["email"]
-    phoneNumber = req["phoneNumber"]
-    addressLine1 = req["addressLine1"]
-    addressLine2 = req["addressLine2"]
-    city = req["city"]
-    state = req["state"]
-    zip = req["zip"]
+    query = request.json
+    print(query)
 
-    # TO-DO: add functions to create profile [assign ID, store password]
-    return {
-        "adopterUserAPI": "POST - createAdoptionUser still in progress, not available at this time"
-    }
+    newUser = list()
+    for value in request.json:
+        newUser.append(request.json[value])
+
+    cur = mysql.connection.cursor()
+
+    sql_statement = (
+        "INSERT INTO adopter (first_name, last_name, email, phone_number) VALUES (%s, %s, %s, %s)"
+    )
+
+    data = tuple(newUser)
+    cur.execute(sql_statement, data)
+    mysql.connection.commit()
+    return {"account_created": "success"}
+
 
 @app.route('/adopterUser/<int:adopter_id>', methods=["PUT"])
 def updateAdopterUser():
