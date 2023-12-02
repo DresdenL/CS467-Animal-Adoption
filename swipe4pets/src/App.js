@@ -15,8 +15,6 @@ import ShelterSignup from './pages/signup/ShelterSignup';
 import AdopterSignUp from './pages/signup/AdopterSignup';
 import SwipeProfiles from "./pages/adopter/SwipeProfiles.jsx";
 import BackendTest from "./Components/BackEndTest/BackendTest";
-import ImageUploadTest from "./Components/ImageUploadTest/ImageUploadTest";
-import SignupComplete from './pages/signup/SignupComplete';
 
 
 export default function App() {
@@ -36,14 +34,20 @@ export default function App() {
           <Route exact path="AdopterHome" element={<AdopterHome />} />
           <Route exact path="SignupComplete" element={<SignupComplete />} />
           <Route exact path='SwipeProfiles' element={<SwipeProfiles />} />
-          <Route exact path="Login" element={<Login />} />
-          <Route exact path="Signup" element={<SignupPt1 />} />
-          <Route exact path="sheltersignup" element={<ShelterSignup />} />
-          <Route exact path="adoptersignup" element={<AdopterSignUp />} />
-          <Route exact path="backendtest" element={<BackendTest
-            apiResponse={apiResponse}
-            setApiResponse={setApiResponse} />} />
-          <Route exact path="imageuploadtest" element={<ImageUploadTest /> } />
+          <Route exact path='Login' element={<Login />} />
+          <Route exact path='Signup' element={<SignupPt1 />} />
+          <Route exact path='sheltersignup' element={<ShelterSignup />} />
+          <Route exact path='adoptersignup' element={<AdopterSignUp />} />
+          <Route
+            exact
+            path='backendtest'
+            element={
+              <BackendTest
+                apiResponse={apiResponse}
+                setApiResponse={setApiResponse}
+              />
+            }
+          />
         </Routes>
       </Router>
     </div>

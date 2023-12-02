@@ -11,9 +11,9 @@ export default function Home() {
       <br></br> <br></br>
       <Link to="/signup"><button>Sign Up</button></Link>
       <br></br> <br></br>
-      <Link to="/backendtest"><button>Backend Test</button></Link>
-      <br></br> <br></br>
-      <Link to="/imageuploadtest"><button>Image Upload Test</button></Link>
+      <Link to='/backendtest'>
+        <button class="kelly-button">Backend Test</button>
+      </Link>
     </div>
   );
 };
