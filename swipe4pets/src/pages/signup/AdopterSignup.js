@@ -18,7 +18,7 @@ export default function AdopterSignUp() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [passHere, setPassHere] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [addressLine1, setAddressLine1] = useState("");
   const [addressLine2, setAddressLine2] = useState("");
@@ -26,32 +26,32 @@ export default function AdopterSignUp() {
   const [state, setState] = useState("");
   const [zip, setZip] = useState("");
 
-  const addAdopterAccount = async () => {
+  const addAdopterAccount = async() => {
     const newAdopter = {
       firstName,
       lastName,
       email,
-      password,
-      phoneNumber,
-      addressLine1,
-      addressLine2,
-      city,
-      state,
-      zip,
+      //passHere,
+      phoneNumber
+      //addressLine1,
+      //addressLine2,
+      //city,
+      //state,
+      //zip,
     };
     const response = await fetch("/api/adopterUser", {
       method: "POST",
       body: JSON.stringify(newAdopter),
-      headers: { "Content-Type": "application/json" },
+      headers: { 'Content-Type': 'application/json' },
     });
-    if (response.status === 201) {
+    const result = await response.json()
+    if (result.account_created === "success") {
       alert(
-        "Thank you for signing up! You will be directed to your home page."
+        "Thank you for signing up!"
       );
-      navigate("/ShelterHome");
-    } else {
-      alert(`Failed to add account, status code = ${response.status}`);
-    }
+    } //else {
+      //alert('Failed to add account');
+    //}
   };
 
   // initiate step
@@ -63,7 +63,7 @@ export default function AdopterSignUp() {
     // first step
     if (currentStep === 0) {
       document.getElementById("nextButton").innerHTML = "Next";
-      return <AdopterStep1 firstName={firstName} lastName={lastName} email={email} password={password} setFirstName={setFirstName} setLastName={setLastName} setEmail={setEmail} setPassword={setPassword} />;
+      return <AdopterStep1 firstName={firstName} lastName={lastName} email={email} passHere={passHere} setFirstName={setFirstName} setLastName={setLastName} setEmail={setEmail} setPassHere={setPassHere} />;
     // second step
     } else if (currentStep === 1) { 
       document.getElementById("nextButton").innerHTML = "Submit";
@@ -91,6 +91,12 @@ export default function AdopterSignUp() {
   const nextStep = () => {
     if (currentStep === 1) {
       if (checkStep(1)) {
+        //addAdopterAccount()
+          //.catch(error => {
+          //  alert('Failed to create account, please try again')
+          //  navigate("/signup");
+          //}
+        //)
         setStep(currentStep + 1);
       } else {
         alert("Missing fields");
@@ -112,7 +118,7 @@ export default function AdopterSignUp() {
         firstName === "" ||
         lastName === "" ||
         email === "" ||
-        password === ""
+        passHere === ""
       ) {
         return false;
       } else {

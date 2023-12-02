@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import ProgressBar from '../../progressBar';
 
-function AdopterStep1({firstName, lastName, email, password, setFirstName, setLastName, setEmail, setPassword}) {
+function AdopterStep1({firstName, lastName, email, passHere, setFirstName, setLastName, setEmail, setPassHere}) {
     return(
         <>
          <h1>Signup</h1>
@@ -19,7 +19,7 @@ function AdopterStep1({firstName, lastName, email, password, setFirstName, setLa
           <br></br> <br></br>
 
           <label>Password</label> <br></br>
-          <input type='password' id='password' name='password' value={password} onChange={e => setPassword(e.target.value)} required></input>
+          <input type='password' id='passHere' name='passHere' value={passHere} onChange={e => setPassHere(e.target.value)} required></input>
           <br></br> <br></br>
         </>
     );
