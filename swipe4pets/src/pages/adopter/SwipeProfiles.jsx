@@ -4,7 +4,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import profile_pic from "./../../Components/Adopter/temp/dog.png";
-import NavBar from '../../Components/NavBar.jsx';
 
 const db = [
   {
@@ -52,8 +51,6 @@ function SwipeProfiles() {
   }
 
   return (
-    <div>
-    <NavBar />
     <Container>
       <Row className='justify-content-md-center'>
         <Col md={{ span: 1, offset: 2 }}>
@@ -74,7 +71,6 @@ function SwipeProfiles() {
         </Col>
       </Row>
     </Container>
-    </div>
   );
 }
 

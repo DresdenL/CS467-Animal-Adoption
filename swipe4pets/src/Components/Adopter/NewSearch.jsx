@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
 
 function NewSearch() {
   // Implement the user portfolio component here
@@ -31,12 +30,9 @@ function NewSearch() {
           Young, Adult, Senior
         </Form.Text>
       </Form.Group>
-      <Link to="/SwipeProfiles">
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Link>
-      
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
     </Form>
   );
 }
