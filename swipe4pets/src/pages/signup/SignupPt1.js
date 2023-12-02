@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ProgressBar from "../../Components/progressBar";
 import NavBar from "../../Components/NavBar.jsx";
@@ -53,10 +53,10 @@ export default function SignupPt1() {
           <br></br>
           <br></br>
           <Link to='/'>
-            <button>Back</button>
+            <button class="kelly-button">Back</button>
           </Link>
           &nbsp; &nbsp;
-          <button type='button' id='nextButton' onClick={() => nextPage()}>
+          <button type='button' id='nextButton' class="kelly-button" onClick={() => nextPage()}>
             {" "}
             Next{" "}
           </button>

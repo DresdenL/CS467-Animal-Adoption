@@ -140,9 +140,9 @@ export default function AdopterSignUp() {
             {showStep()}
 
         <div class='signup-buttons'>
-        <button type='button' id='backButton' onClick={() => prevStep()}>Back</button>
+        <button type='button' id='backButton' class="kelly-button" onClick={() => prevStep()}>Back</button>
         &nbsp; &nbsp;
-        <button type='button' id='nextButton' onClick={() => nextStep()}> Next </button>
+        <button type='button' id='nextButton' class="kelly-button" onClick={() => nextStep()}> Next </button>
         </div>
 
     </div>

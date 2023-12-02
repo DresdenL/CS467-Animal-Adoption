@@ -11,15 +11,15 @@ export default function Home() {
       </h1>
       <br></br>
       <Link to='/login'>
-        <button>Login</button>
+        <button class="kelly-button">Login</button>
       </Link>
       <br></br> <br></br>
       <Link to='/signup'>
-        <button>Sign Up</button>
+        <button class="kelly-button">Sign Up</button>
       </Link>
       <br></br> <br></br>
       <Link to='/backendtest'>
-        <button>Backend Test</button>
+        <button class="kelly-button">Backend Test</button>
       </Link>
     </div>
   );
