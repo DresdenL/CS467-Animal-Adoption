@@ -1,14 +1,13 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
-import IMG_9432 from './IMG_9432.jpeg';
 
 const ImageUploadTest = () => {
 
     const [apiResponse, setApiResponse] = useState({"backend": ""});
-    const [instantImagePreview, setInstantImagePreview] = useState(IMG_9432);
+    const [instantImagePreview, setInstantImagePreview] = useState("");
     const [uploadedImagePreview, setUploadedImagePreview] = useState("");
-    const [fileToUpload, setFileToUpload] = useState(IMG_9432);
+    const [fileToUpload, setFileToUpload] = useState("");
 
     // setUploadedImagePreview whenever we get a new apiResponse
     useEffect(() => {
@@ -42,7 +41,7 @@ const ImageUploadTest = () => {
 
     return (
         <div class="center">
-            <label for="petPic">Animal picture preview test (Preload default picture)</label>
+            <label for="petPic">Animal picture preview test</label>
             <br />
             <input type="file" accept="image/*" id="petPic" onChange={handleChange} />
 
