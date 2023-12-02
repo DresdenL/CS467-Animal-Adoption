@@ -21,6 +21,10 @@ export default function Home() {
       <Link to='/backendtest'>
         <button class="kelly-button">Backend Test</button>
       </Link>
+      <br></br> <br></br>
+      <Link to="/imageuploadtest">
+        <button class="kelly-button">Image Upload Test</button>
+      </Link>
     </div>
   );
 }

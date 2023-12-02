@@ -16,6 +16,7 @@ import ShelterSignup from "./pages/signup/ShelterSignup";
 import AdopterSignUp from "./pages/signup/AdopterSignup";
 import SwipeProfiles from "./pages/adopter/SwipeProfiles.jsx";
 import BackendTest from "./Components/BackEndTest/BackendTest";
+import ImageUploadTest from "./Components/ImageUploadTest/ImageUploadTest";
 
 export default function App() {
   const [apiResponse, setApiResponse] = useState({});
@@ -51,7 +52,8 @@ export default function App() {
                 setApiResponse={setApiResponse}
               />
             }
-          />
+                  />
+          <Route exact path="imageuploadtest" element={<ImageUploadTest />} />
         </Routes>
       </Router>
     </div>
