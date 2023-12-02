@@ -7,7 +7,7 @@ function NavBar() {
   return (
     <Navbar bg="light" data-bs-theme="light">
       <Container>
-        <Navbar.Brand href="/">Swip4Pets</Navbar.Brand>
+        <Navbar.Brand href="/">Swipe4Pets</Navbar.Brand>
         <Nav className="me-auto">
           <Nav.Link href="/">Home</Nav.Link>
         </Nav>
