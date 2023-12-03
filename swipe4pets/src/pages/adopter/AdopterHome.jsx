@@ -19,6 +19,7 @@ function AdopterHome() {
         </Col>
         <Col>
           <Matches />
+          <br></br>
           <NewSearch />
         </Col>
       </Row>

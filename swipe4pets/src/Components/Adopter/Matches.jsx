@@ -4,6 +4,13 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import { useState, useEffect } from "react";
 
+//Temp
+import dog1 from "./temp/dog_1.jpg";
+import dog2 from "./temp/dog_2.jpg";
+import dog3 from "./temp/dog_3.jpg";
+import dog4 from "./temp/dog_4.jpg";
+import dog5 from "./temp/dog_5.jpg";
+
 function Matches() {
   // Implement the user portfolio component here
 

@@ -3,29 +3,42 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import profile_pic from "./../../Components/Adopter/temp/dog.png";
+import { Link } from 'react-router-dom';
 import NavBar from '../../Components/NavBar.jsx';
+
+//Temp
+import dog1 from "./../../Components/Adopter/temp/dog_1.jpg";
+import dog2 from "./../../Components/Adopter/temp/dog_2.jpg";
+import dog3 from "./../../Components/Adopter/temp/dog_3.jpg";
+import dog4 from "./../../Components/Adopter/temp/dog_4.jpg";
+import dog5 from "./../../Components/Adopter/temp/dog_5.jpg";
+
 
 const db = [
   {
+    id: 1,
     name: "Stella",
-    url: profile_pic,
+    url: dog1,
   },
   {
+    id: 2,
     name: "Dexter",
-    url: profile_pic,
+    url: dog2,
   },
   {
+    id: 3,
     name: "Max",
-    url: profile_pic,
+    url: dog3,
   },
   {
+    id: 4,
     name: "Buddy",
-    url: profile_pic,
+    url: dog4,
   },
   {
+    id: 5,
     name: "Luna",
-    url: profile_pic,
+    url: dog5,
   },
 ];
 
@@ -53,8 +66,8 @@ function SwipeProfiles() {
 
   return (
     <div>
-    <NavBar />
-    <Container>
+      <NavBar />
+      <Container>
       <Row className='justify-content-md-center'>
         <Col md={{ span: 1, offset: 2 }}>
           <Button onClick={nextProfile} variant='outline-dark'>
@@ -73,8 +86,10 @@ function SwipeProfiles() {
           </Button>
         </Col>
       </Row>
+      <Link to="/AdopterHome"><Button>Back</Button></Link>
     </Container>
     </div>
+    
   );
 }
 

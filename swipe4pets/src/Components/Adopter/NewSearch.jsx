@@ -10,7 +10,12 @@ function NewSearch() {
       <h2>New Search</h2>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Type</Form.Label>
-        <Form.Control type="type" placeholder="Type of animal" />
+        <Form.Select aria-label="Default select example">
+          <option>Type of animal</option>
+          <option value="1">Dog</option>
+          <option value="2">Cat</option>
+          <option value="3">Other</option>
+        </Form.Select>
         <Form.Text className="text-muted">
           Dog, Cat, Other
         </Form.Text>
