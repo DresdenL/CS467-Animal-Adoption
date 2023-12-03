@@ -25,6 +25,7 @@ For those who have been provided with the .env file, installation instructions c
 2. Place a copy of the .env file into the main folder for the application, like so:
   ![image](https://github.com/schmkelsosu/CS467-Animal-Adoption/assets/81319683/bf0a0686-5ab3-42fe-97f3-43c8efab4577)
 3. You may wish to use a virtual environment to have a clean installation. This is recommended for best results, but you can also download the needed packages to your local environment as well.
+   Instructions for creating/activating a virtual environment can be found here: https://docs.python.org/3/library/venv.html
 4. In a terminal in the main folder of the project, update pip with the command:
    **python -m pip install -U pip**
    ![image](https://github.com/schmkelsosu/CS467-Animal-Adoption/assets/81319683/ad533af7-e241-472f-946b-2c08145ef2a3)
