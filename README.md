@@ -29,7 +29,7 @@ For those who have been provided with the .env file, installation instructions c
 4. In a terminal in the main folder of the project, update pip with the command:
    **python -m pip install -U pip**
    ![image](https://github.com/schmkelsosu/CS467-Animal-Adoption/assets/81319683/ad533af7-e241-472f-946b-2c08145ef2a3)
-6. In the same terminal, download the required python extension with the command:
+6. In the same terminal, download the required python extensions with the command:
    **pip install -r requirements.txt**
    ![image](https://github.com/schmkelsosu/CS467-Animal-Adoption/assets/81319683/c2e91595-3728-458b-a975-054b61ce691d)
 7. In the same terminal, go into the **backend** folder with the command:
