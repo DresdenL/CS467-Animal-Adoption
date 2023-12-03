@@ -132,7 +132,7 @@ def get_organization_user_by_id(organization_id: int):
     }
 
 
-@app.route('/organizationUser', methods=["POST"])
+@app.route('/api/organizationUser', methods=["POST"])
 @cross_origin()
 def create_organization_user():
     """
@@ -141,30 +141,29 @@ def create_organization_user():
 
     Returns the newly created organization user account.
     """
-    # TO-DO: parse query for any missing parameters and return appropriate error if applicable
-    req = request.args.to_dict()
-    invalid_params = helpers.get_invalid_params(
-        req.keys(), constants.CREATE_ORGANIZATION_REQUEST_PARAMS
-    )
-    if len(invalid_params) > 0:
-        error_msg = helpers.create_invalid_parameters_error_message(
-            invalid_params
-        )
-        return Response(
-            error_msg,
-            400
-        )
-    id = req["id"]
-    display_name = req["display_name"]
-    username = req["username"]
-    email = req["email"]
-    phone_number = req["phone_number"]
+    """
+    Creates a new adopter user account.
 
-    # TO-DO: persist new shelter user in shelter user table in database
-    # TO-DO: persist dependent objects/relationships in database (role, address, algorithm, password)
-    return {
-        "organizationUserAPI": "POST - createOrganizationUser not available at this time"
-    }
+    Returns success code if account is successfully created.
+    """
+ 
+    query = request.json
+    print(query)
+
+    newOrg = list()
+    for value in request.json:
+        newOrg.append(request.json[value])
+
+    cur = mysql.connection.cursor()
+
+    sql_statement = (
+        "INSERT INTO organization (display_name, email, phone_number) VALUES (%s, %s, %s)"
+    )
+
+    data = tuple(newOrg)
+    cur.execute(sql_statement, data)
+    mysql.connection.commit()
+    return {"account_created": "success"}
 
 
 @app.route('/organizationUser/<int:organization_id>', methods=["PUT"])

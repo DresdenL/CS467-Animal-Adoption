@@ -26,6 +26,9 @@ export default function AdopterSignUp() {
   const [state, setState] = useState("");
   const [zip, setZip] = useState("");
 
+  
+  // when 'submit' is selected, this handles creating the new account
+  // currently only stores firstName,lastName, email, and phone number. 
   const addAdopterAccount = async() => {
     const newAdopter = {
       firstName,
@@ -49,15 +52,14 @@ export default function AdopterSignUp() {
       alert(
         "Thank you for signing up!"
       );
-    } //else {
-      //alert('Failed to add account');
-    //}
+    }
   };
 
-  // initiate step
+  // initiate first step
   const [currentStep, setStep] = useState(0)
 
-  // function to show the current sign up step, pass function an integer and it will show that step
+  // function to show the current sign up step. this is based off variable currentStep, and will return the component associated with that step. 
+  // functin will also handle reassignment of next/submit button 
   const showStep = () => {
     let signup_buttons = document.getElementsByClassName("signup-buttons");
     // first step
@@ -78,25 +80,24 @@ export default function AdopterSignUp() {
 
   // event handler for hitting back button
   const prevStep = () => {
+    if (currentStep === 0) {
+      navigate("/signup");
+      return false;
+    } else {
     setStep(currentStep - 1);
-      if (currentStep < 0) {
-        navigate("/signup");
-        return false;
-      } else {
-        return false;
-      }
   }
+}
   
-  // event handler for hitting next button; checks if all fields are filled out 
+  // event handler for hitting next button; checks if all fields are filled out and whether account was successfully added. 
   const nextStep = () => {
     if (currentStep === 1) {
       if (checkStep(1)) {
-        //addAdopterAccount()
-          //.catch(error => {
-          //  alert('Failed to create account, please try again')
-          //  navigate("/signup");
-          //}
-        //)
+        addAdopterAccount()
+          .catch(error => {
+            alert('Failed to create account, please try again')
+            navigate("/signup");
+          }
+        )
         setStep(currentStep + 1);
       } else {
         alert("Missing fields");
@@ -112,6 +113,7 @@ export default function AdopterSignUp() {
     }
   };
 
+  // function checks to make sure the current step was completed (all fields filled out )
   const checkStep = (step) => {
     if (step === 0) {
       if (

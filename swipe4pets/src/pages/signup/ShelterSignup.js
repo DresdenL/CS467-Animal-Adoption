@@ -29,27 +29,24 @@ export default function ShelterSignup() {
     const newAdopter = {
       organizationName,
       email,
-      password,
+      //password,
       phoneNumber,
-      addressLine1,
-      addressLine2,
-      city,
-      state,
-      zip,
+      //addressLine1,
+      //addressLine2,
+      //city,
+      //state,
+      //zip,
     };
-    // placeholder -- hook response up to backend!
     const response = await fetch("/api/organizationUser", {
       method: "POST",
       body: JSON.stringify(newAdopter),
       headers: { "Content-Type": "application/json" },
     });
-    if (response.status === 201) {
+    const result = await response.json()
+    if (result.account_created === "success") {
       alert(
-        "Thank you for signing up! You will be directed to your home page."
+        "Thank you for signing up!"
       );
-      navigate("/ShelterHome");
-    } else {
-      alert(`Failed to add account, status code = ${response.status}`);
     }
   };
 
@@ -76,19 +73,24 @@ export default function ShelterSignup() {
 
   // event handler for hitting back button
   const prevStep = () => {
+    if (currentStep === 0) {
+      navigate("/signup");
+      return false;
+    } else {
     setStep(currentStep - 1);
-      if (currentStep < 0) {
-        navigate("/signup");
-        return false;
-      } else {
-        return false;
-      }
   }
+}
   
   // event handler for hitting next button; checks if all fields are filled out 
   const nextStep = () => {
     if (currentStep === 1) {
       if (checkStep(1)) {
+        addOrganizationAccount()
+          .catch(error => {
+            alert('Failed to create account, please try again')
+            navigate("/signup");
+          }
+          )
         setStep(currentStep + 1);
       } else {
         alert("Missing fields");
@@ -104,6 +106,7 @@ export default function ShelterSignup() {
     }
   };
 
+  // function checks to make sure the current step was completed (all fields filled out )
   const checkStep = (step) => {
     if (step === 0) {
       if (organizationName === "" || email === "" || password === "") {
