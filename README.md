@@ -17,7 +17,7 @@ Information on Node installation can be found here: https://nodejs.org/
 You will need a code editor such as Visual Studio, VS Code, etc., or know-how of how to run git commands/terminal commands on your own setup, to clone the repo and run the code.
 
 Successful local development relies on environment variables to be fed to the application that supply the database credentials and Amazon S3 credentials (for the image storage service).
-As these credentials are private, running this locally will not work without a .env file that supplies these environment variables. This file will be made available to TA's/instructors of the CS467 course at Oregon State University, but do not come preloaded in to this repo. 
+As these credentials are private, running this locally will not work without a .env file that supplies these environment variables. This file will be made available to TA's/instructors of the CS467 course at Oregon State University, but does not come preloaded in this repo. 
 
 For those who have been provided with the .env file, installation instructions can be found below:
 
