@@ -1,6 +1,6 @@
 import React from "react";
-import IMG_9432 from "./IMG_9432.jpeg";
 import NavBar from "../../Components/NavBar.jsx";
+import image_67185409 from "./tmp_shelter_photos/image_67185409.JPG"
 
 const ViewProfile = () => {
   return (
@@ -14,7 +14,7 @@ const ViewProfile = () => {
         </div>
         <div class='row'>
           <div class='col-sm-7 text-center custom-select mb-2'>
-            <img class='thumbnail img-fluid' src={IMG_9432} alt='tmp_pic' />
+            <img class='thumbnail img-fluid' src={image_67185409} alt='tmp_pic' />
           </div>
           <div class='col'>
             <h2>Availability: Available</h2>
