@@ -56,13 +56,16 @@ export default function ShelterSignup() {
 // uses current step to return react component associated with that part of the form
   const showStep = () => {
     let signup_buttons = document.getElementsByClassName("signup-buttons");
+    let nextBtn = document.getElementById("nextButton");
     // first step
     if (currentStep === 0) {
-      document.getElementById("nextButton").innerHTML = "Next";
+      nextBtn.innerHTML = "Next";
+      //document.getElementById("nextButton").innerHTML = "Next";
       return <ShelterStep1 organizationName={organizationName} email={email} password={password} setOrganizationName={setOrganizationName} setEmail={setEmail} setPassword={setPassword} />;
     // second step
     } else if (currentStep === 1) { 
-      document.getElementById("nextButton").innerHTML = "Submit";
+      //document.getElementById("nextButton").innerHTML = "Submit";
+      nextBtn.innerHTML = "Submit";
       return  <ShelterStep2 phoneNumber={phoneNumber} setPhoneNumber={setPhoneNumber} addressLine1={addressLine1} setAddressLine1={setAddressLine1} addressLine2={addressLine2} setAddressLine2={setAddressLine2} city={city} setCity={setCity} state={state} setState={setState} zip={zip} setZip={setZip} />;
     // finished page
     } else if (currentStep === 2) {
@@ -86,11 +89,11 @@ export default function ShelterSignup() {
     if (currentStep === 1) {
       if (checkStep(1)) {
         addOrganizationAccount()
-          .catch(error => {
-            alert('Failed to create account, please try again')
-            navigate("/signup");
-          }
-          )
+          //.catch(error => {
+          //  alert('Failed to create account, please try again')
+          //  navigate("/signup");
+          //}
+          //)
         setStep(currentStep + 1);
       } else {
         alert("Missing fields");
