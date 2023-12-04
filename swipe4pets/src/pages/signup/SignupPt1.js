@@ -6,23 +6,47 @@ import NavBar from "../../Components/NavBar.jsx";
 export default function SignupPt1() {
   const navigate = useNavigate();
 
-  let accountType = 0;
-
-  // Function sets account type as either Shelter (1) or Adopter (2)
-  const setAccountType = (n) => {
-    accountType = n;
-  };
+  const [accountType, setAccountType] = useState("");
 
   // Function navigates to either shelter or adoption page, based on button selection
   const nextPage = () => {
-    if (accountType == 1) {
+    if (accountType === 'shelter') {
       navigate("/sheltersignup");
-    } else if (accountType == 2) {
+    } else if (accountType === 'adopter') {
       navigate("/adoptersignup");
     } else {
       alert("ERROR: Select account type");
     }
   };
+
+  const button = document.getElementsByClassName("choice-button");
+
+  const choiceClick = (n) => {
+    if (n === 0) {
+      if (accountType === 'shelter') {
+        button[0].classList.toggle('active')
+      } else if (accountType === 'adopter') {
+        button[1].classList.toggle('active');
+        button[0].classList.toggle('active')
+        setAccountType('shelter');
+      } else {
+        button[0].classList.toggle('active')
+        setAccountType('shelter');
+      }
+    }
+  if (n === 1) {
+    if (accountType === 'adopter') {
+      button[1].classList.toggle('active')
+    } else if (accountType === 'shelter') {
+      button[0].classList.toggle('active');
+      button[1].classList.toggle('active')
+      setAccountType('adopter');
+    } else {
+      button[1].classList.toggle('active')
+      setAccountType('adopter');
+    }
+  } 
+  }
 
   return (
     <div class='center'>
@@ -35,18 +59,18 @@ export default function SignupPt1() {
           </h1>
           <label>Select One</label>
           <br></br>
-          <button
+          <button class="choice-button"
             type='button'
             id='shelterType'
-            onClick={() => setAccountType(1)}
+            onClick={() => choiceClick(0)}
           >
             Shelter
           </button>
           <br></br> <br></br>
-          <button
+          <button class="choice-button"
             type='button'
             id='adopterType'
-            onClick={() => setAccountType(2)}
+            onClick={() => choiceClick(1)}
           >
             Adopter
           </button>
