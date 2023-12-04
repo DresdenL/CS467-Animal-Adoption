@@ -93,11 +93,11 @@ export default function AdopterSignUp() {
     if (currentStep === 1) {
       if (checkStep(1)) {
         addAdopterAccount()
-          .catch(error => {
-            alert('Failed to create account, please try again')
-            navigate("/signup");
-          }
-        )
+          //.catch(error => {
+          //  alert('Failed to create account, please try again')
+          //  navigate("/signup");
+          //}
+        //)
         setStep(currentStep + 1);
       } else {
         alert("Missing fields");
