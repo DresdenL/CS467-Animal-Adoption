@@ -20,7 +20,7 @@ export default function Login() {
   };  
 
   return (
-    <div>
+    <div class="center">
       <NavBar />
       <Container>
       <Row>
@@ -28,12 +28,11 @@ export default function Login() {
           <h1>Login</h1>
           <Form>
             <Form.Group className='mb-3' controlId='formBasicEmail'>
-              <Form.Label>Email</Form.Label>
-              <Form.Control type='email' placeholder='Enter email' />
+              <input class="kelly-input" type='email' placeholder='Enter email' />
             </Form.Group>
+            <br></br>
             <Form.Group className='mb-3' controlId='formBasicPassword'>
-              <Form.Label>Password</Form.Label>
-              <Form.Control type='password' placeholder='Password' />
+              <input class="kelly-input" type='password' placeholder='Password' />
             </Form.Group>
               {['radio'].map((type) => (
                 <div key={`inline-${type}`} className="mb-3">
@@ -53,11 +52,12 @@ export default function Login() {
                   />
                 </div>
               ))}
-            <Link to="/"><Button>Back</Button></Link> 
+            <Link to="/"><button class="kelly-button">Back</button></Link> 
+            &nbsp; &nbsp;
             <Link to={selectedType}>
-            <Button variant='primary' type='submit'>
+            <button class="kelly-button" type='submit'>
               Submit
-            </Button>
+            </button>
             </Link>
         </Form>
         </Col>
